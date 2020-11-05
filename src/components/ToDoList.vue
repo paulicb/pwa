@@ -7,8 +7,9 @@
         <div class="col-1">
         <input type="checkbox">
         </div>
-        <div class=" col-10 todos">
+        <div class=" col-10 todos" title="double tap to edit">
           {{todo.title}}
+          <p>Due date: 24/12/2020</p>
         </div>
         <div class="col-1 remove-item">
           &times;
@@ -23,6 +24,9 @@
           <button type="button" class="btn btn-secondary btn-lg button">Active</button>
           <button type="button" class="btn btn-secondary btn-lg button">Completed</button>
         </div>
+    <div>
+      <p>Your progress:</p>
+    </div>
         <div class="progress">
   <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
@@ -64,7 +68,9 @@ export default {
 
 
 <style>
-
+.progress{
+  margin-bottom: 20px;
+}
   .todo-input{
     width: 100%;
     padding: 10px 18px;
@@ -88,7 +94,7 @@ export default {
     font-size: 18px;
     border-top: 1px solid lightgray;
     padding-top: 14px;
-    margin-bottom: 14px;
+    margin-bottom: 20px;
   }
   .button{
     padding: 10px;
