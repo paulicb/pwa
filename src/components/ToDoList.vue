@@ -5,22 +5,9 @@
       <input type="text" class="col-7 todo-input" placeholder="What is your plan?" v-model="newTodo" @keyup.enter="addTodo">
       <input type="text" class="todo-input" placeholder="When is it due?" v-model="newDate" @keyup.enter="addTodo">
       </div>
-        <div v-for="(todo,index) in todosFiltered" :key="todo.id" class="col-12 todo-item">
-        <div class="checkbox">
-        <input type="checkbox" v-model="todo.completed">
-        </div>
-        <div class="col-8 todo-item-left" title="double tap to edit">
-         <div v-if="!todo.editing" @dblclick="editTodo(todo)" class="todo-item-label" :class="{ completed : todo.completed}">{{todo.title}}</div>
-         <input v-else class="todo-item-edit" type="text" v-model="todo.title" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" v-focus>
-        </div>
-        <div class="col-2 date-right">
-         <div v-if="!todo.dateEditing" @dblclick="editDate(todo)" class="todo-date-label" :class="{completed: todo.completed}">{{todo.date}}</div>
-         <input v-else class="todo-date-edit" type="text" v-model="todo.date" @blur="doneDateEdit(todo)" @keyup.enter="doneDateEdit(todo)" @keyup.esc="cancelDateEdit(todo)" v-focus>
-        </div>
-        <div class="remove-item" @click="removeTodo(index)">
-          &times;
-        </div>
-        </div>
+        <todo-item v-for="todo in todosFiltered" :key="todo.id" :todo="todo" :checkAll="!anyRemaining" @removedTodo="removeTodo" @finishedEdit="finishedEdit">
+   
+        </todo-item>
         <div class="extra-container">
           <div><label><input type="checkbox" :checked="!anyRemaining" @change="checkAllTodos"> Check All</label></div>
           <div>{{remaining}} items left</div>
@@ -40,8 +27,13 @@
 </template>
 
 <script>
+import TodoItem from './TodoItem.vue'
+
 export default {
   name: 'todo-list',
+  components:{
+    TodoItem,
+  },
   data(){
     return{
       newTodo:'',
@@ -106,13 +98,7 @@ export default {
       return this.todos.filter(todo =>todo.completed).length > 0
     }
   },
-  directives:{
-    focus:{
-      inserted:function(el){
-        el.focus()
-      }
-    }
-  },
+
   methods:{
     addTodo(){
       if(this.newTodo.trim().length==0){
@@ -127,34 +113,7 @@ export default {
       this.newTodo=''
       this.idForTodo++
     },
-    editTodo(todo){
-      this.beforeEditCache = todo.title
-      todo.editing= true
-    },
-    editDate(todo){
-      this.beforeEditCache = todo.date
-      todo.dateEditing= true
-    },
-    doneEdit(todo){
-      if(todo.title.trim().length==0){
-        todo.title= this.beforeEditCache
-      }
-      todo.editing = false
-    },
-    doneDateEdit(todo){
-      if(todo.date.trim().length==0){
-        todo.date= this.beforeEditCache
-      }
-      todo.dateEditing = false
-    },
-    cancelDateEdit(todo){
-      todo.date = this.beforeEditCache
-      todo.dateEditing = false
-    },
-    cancelEdit(todo){
-      todo.title = this.beforeEditCache
-      todo.editing = false
-    },
+    
     removeTodo(index) {
       this.todos.splice(index,1)
     },
@@ -163,6 +122,10 @@ export default {
     },
     clearCompleted(){
       this.todos = this.todos.filter(todo=>!todo.completed)
+    },
+     finishedEdit(data) {
+      const index = this.todos.findIndex((item) => item.id == data.id)
+      this.todos.splice(index, 1, data)
     }
   }
 }
