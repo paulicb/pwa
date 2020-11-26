@@ -4,10 +4,10 @@
         <input type="checkbox" v-model="completed" @change="doneEdit">
         </div>
         <div class="col-8 todo-item-left" title="double tap to edit">
-         <div v-if="!editing" @dblclick="editTodo" class="todo-item-label" :class="{ completed : completed }">{{ title }}</div>
+         <div v-if="!editing" @dblclick="editTodo" class="todo-item-label" :class="{ completed : completed }" >{{ title }}</div>
          <input v-else class="todo-item-edit" type="text" v-model="title" @blur="doneEdit" @keyup.enter="doneEdit" @keyup.esc="cancelEdit" v-focus>
         </div>
-        <div class="col-2 date-right">
+        <div class="col-2 date-right" title="double tap to edit">
          <div v-if="!dateEditing" @dblclick="editDate" class="todo-date-label" :class="{completed: completed}">{{date}}</div>
          <input v-else class="todo-date-edit" type="text" v-model="date" @blur="doneDateEdit" @keyup.enter="doneDateEdit" @keyup.esc="cancelDateEdit" v-focus>
         </div>

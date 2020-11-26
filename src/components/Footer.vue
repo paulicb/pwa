@@ -12,7 +12,7 @@ export default {
 
 <style>
 footer{
-position: bottom fixed;
+position:fixed bottom;
 padding-top: 30px;
 color:white;
 text-align: center;

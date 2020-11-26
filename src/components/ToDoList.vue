@@ -137,7 +137,7 @@ export default {
   padding: 50px;
   background-color: white;
   border-radius: 25px;
-  font-size: 28px;
+  font-size: 24px;
   margin: 0 auto;
   
 }
@@ -193,7 +193,7 @@ export default {
     margin-left: 12px;
   }
   .todo-item-edit{
-    font-size: 28px;
+    font-size: 24px;
     color:#353535 !important;
     margin-left: 12px;
     width:100%;
@@ -206,7 +206,7 @@ export default {
     border: 1px solid white;
   }
   .todo-date-edit{
-    font-size: 28px;
+    font-size: 24px;
     color:#353535 !important;
     border: 1px solid #ccc;
     width:120%;
@@ -223,7 +223,7 @@ export default {
     padding: 10px 10px;
   }
   button{
-    font-size: 24px !important;
+    font-size: 20px !important;
     padding: 10px;
     margin: 2px;
   }
