@@ -57,22 +57,6 @@ export default {
           'completed': false,
           'editing': false,
           'dateEditing':false,
-        },
-        {
-          'id':3,
-          'title': 'Walk the doggo',
-          'date' : '24.01.2022',
-          'completed': false,
-          'editing': false,
-          'dateEditing':false,
-        },
-        {
-          'id':4,
-          'title': 'Learn spanish',
-          'date' : '24.01.2024',
-          'completed': false,
-          'editing': false,
-          'dateEditing':false,
         }
       ]
     }
@@ -219,7 +203,6 @@ export default {
   .extra{
     border-top: 1px solid lightgray;
     display:flex;
-    justify-content: left;
     padding: 10px 10px;
   }
   button{

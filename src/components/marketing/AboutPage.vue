@@ -1,7 +1,6 @@
 <template>
     <div class="col-6 flex-center">
-    This app will help you organize your life.
-    If you have an event or a task happening, write them down and keep track of their progress.
+    Feeling busy and overwhelmed with everyday's activities and tasks? Keep your life organized and plan your activities to be as productive and organized as possible.
   </div>
 </template>
 
@@ -10,6 +9,7 @@
   color:white !important;
   font-size: 48px;
   margin: 0 auto;
-  margin-top: 150px;
+  margin-top: 100px;
+  text-align: justify;
 }
 </style>

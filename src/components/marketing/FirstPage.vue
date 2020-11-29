@@ -3,7 +3,7 @@
       <div class="jumbotron jumbotron-fluid">
     <div class="container2">
     <h1 class="display-2">Daily Planner</h1>
-    <p class="lead">This is the place where organization starts.</p>
+    <p class="lead">This is the place where organization begins.</p>
     </div>
     </div>
     </div>

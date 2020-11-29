@@ -1,27 +1,18 @@
 <template>
   <div id="app">
-<!--<div class="jumbotron jumbotron-fluid">
-  <div class="container2">
-    <h1 class="display-2">Daily Planner</h1>
-    <p class="lead">This is the place where organization starts.</p>
-  </div>
-</div>-->
   <div class="container">
     <ToDoList></ToDoList>
   </div>
-    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import ToDoList from './components/ToDoList.vue'
-import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
     ToDoList,
-    Footer,
   }
 }
 </script>

@@ -4,6 +4,8 @@ import AboutPage from './components/marketing/AboutPage'
 import Login from './components/authentication/Login'
 import Register from './components/authentication/Register'
 
+
+
 const routes = [
     { 
     path:'/',
@@ -12,7 +14,9 @@ const routes = [
     { 
     path:'/planner',
     name: 'todo',
-    component: App},
+    component: App,
+    meta: {requiresAuth: true}
+  },
     {
     path:'/about',
     name: 'about',
