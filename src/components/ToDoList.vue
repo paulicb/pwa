@@ -5,21 +5,17 @@
       <input type="text" class="col-7 todo-input" placeholder="What is your plan?" v-model="newTodo" @keyup.enter="addTodo">
       <input type="text" class="todo-input" placeholder="When is it due?" v-model="newDate" @keyup.enter="addTodo">
       </div>
-        <todo-item v-for="todo in todosFiltered" :key="todo.id" :todo="todo" :checkAll="!anyRemaining" @removedTodo="removeTodo" @finishedEdit="finishedEdit">
+        <todo-item v-for="todo in todosFiltered" :key="todo.id" :todo="todo" :checkAll="!anyRemaining">
    
         </todo-item>
         <div class="extra-container">
-          <div><label><input type="checkbox" :checked="!anyRemaining" @change="checkAllTodos"> Check All</label></div>
-          <div>{{remaining}} items left</div>
+          <todo-check-all></todo-check-all>
+        <todos-remaining> </todos-remaining>
         </div>
         <div class="extra">
-          <div>
-        <button :class="{ active: filter == 'all' }" @click="filter = 'all'" class="btn btn-outline-primary">All</button>
-        <button :class="{ active: filter == 'active' }" @click="filter = 'active'" class="btn btn-outline-primary">Active</button>
-        <button :class="{ active: filter == 'completed' }" @click="filter = 'completed'" class="btn btn-outline-primary">Completed</button>
-      </div>
+          <todo-filtered></todo-filtered>
       <div>
-      <button v-if="showClearCompletedButton" @click="clearCompleted" class="btn btn-outline-primary">Remove Completed Tasks</button>
+      <todo-clear-completed></todo-clear-completed>
       </div>
         </div>
 </div>
@@ -27,12 +23,21 @@
 </template>
 
 <script>
+
 import TodoItem from './TodoItem.vue'
+import TodosRemaining from './TodosRemaining.vue'
+import TodoFiltered from './TodoFiltered'
+import TodoClearCompleted from './TodoClearCompleted'
+import TodoCheckAll from './TodoCheckAll'
 
 export default {
   name: 'todo-list',
   components:{
     TodoItem,
+    TodosRemaining,
+    TodoFiltered,
+    TodoClearCompleted,
+    TodoCheckAll,
   },
   data(){
     return{
@@ -40,46 +45,21 @@ export default {
       newDate:'',
       idForTodo: 3,
       beforeEditCache: '',
-      filter: 'all',
-      todos: [
-        {
-          'id':1,
-          'title': 'Finish this assignment for PWA',
-          'date' : '18.06.2021.',
-          'completed': false,
-          'editing': false,
-          'dateEditing':false,
-        },
-        {
-          'id':2,
-          'title': 'Learn Vue.js',
-          'date' : '25.02.2021.',
-          'completed': false,
-          'editing': false,
-          'dateEditing':false,
-        }
-      ]
     }
   },
+
   computed:{
     remaining(){
-      return this.todos.filter(todo=> !todo.completed).length
+      return this.$store.getters.remaining
     },
     anyRemaining(){
-      return this.remaining != 0
+      return this.$store.getters.anyRemaining
     },
     todosFiltered(){
-      if(this.filter =='all'){
-        return this.todos
-      }else if(this.filter == 'active'){
-        return this.todos.filter(todo=> !todo.completed)
-      }else if(this.filter == 'completed'){
-        return this.todos.filter(todo=> todo.completed)
-      }
-    return this.todos
+      return this.$store.getters.todosFiltered
     },
     showClearCompletedButton(){
-      return this.todos.filter(todo =>todo.completed).length > 0
+      return this.$store.getters.showClearCompletedButton
     }
   },
 
@@ -88,28 +68,16 @@ export default {
       if(this.newTodo.trim().length==0){
         return
       }
-      this.todos.push({
+      this.$store.dispatch('addTodo',{
         id: this.idForTodo,
         title: this.newTodo,
         date: this.newDate,
         completed: false,
-      })
+        editing: false
+      }),
+
       this.newTodo=''
       this.idForTodo++
-    },
-    
-    removeTodo(index) {
-      this.todos.splice(index,1)
-    },
-    checkAllTodos(){
-      this.todos.forEach((todo)=> todo.completed = event.target.checked)
-    },
-    clearCompleted(){
-      this.todos = this.todos.filter(todo=>!todo.completed)
-    },
-     finishedEdit(data) {
-      const index = this.todos.findIndex((item) => item.id == data.id)
-      this.todos.splice(index, 1, data)
     }
   }
 }

@@ -9,6 +9,7 @@
       </div>
       <div class="form-group password">
         <input type="password" class="form-control" v-model="password" placeholder="Enter password"/>
+      <small id="emailHelp" class="form-text">Password must contain letters a-z and atleast 1 number.</small>
       </div>
       <button type="submit" class="btn btn-primary button2">Register</button>
     </form>
