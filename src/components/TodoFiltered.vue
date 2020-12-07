@@ -1,8 +1,8 @@
 <template>
     <div>
-        <button :class="{ active: filter == 'all' }" @click="changeFilter('all')" class="btn btn-outline-primary">All</button>
-        <button :class="{ active: filter == 'active' }" @click="changeFilter('active')" class="btn btn-outline-primary">Active</button>
-        <button :class="{ active: filter == 'completed' }" @click="changeFilter('completed')" class="btn btn-outline-primary">Completed</button>
+        <button :class="{ active: filter == 'all' }" @click="changeFilter('all')" class="button btn btn-light ">All</button>
+        <button :class="{ active: filter == 'active' }" @click="changeFilter('active')" class="button btn btn-light">Active</button>
+        <button :class="{ active: filter == 'completed' }" @click="changeFilter('completed')" class="button btn btn-light">Completed</button>
       </div>
 </template>
 

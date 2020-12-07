@@ -47,6 +47,9 @@ export default {
       beforeEditCache: '',
     }
   },
+  created(){
+    this.$store.dispatch('retrieveTodos')
+  },
 
   computed:{
     remaining(){
@@ -165,7 +168,7 @@ export default {
     margin-right: 10px;
   }
   .completed{
-    color:#0092A6;
+    color:rebeccapurple;
     text-decoration: line-through;
   }
   .extra{

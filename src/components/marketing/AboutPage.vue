@@ -1,7 +1,8 @@
 <template>
     <div class="col-6 flex-center">
     <p>Feeling busy and overwhelmed with everyday's activities and tasks?</p>
-    <p>Keep your life organized and plan your activities to be as productive and organized as possible.</p>
+    <p>Keep your life organized and plan your activities with our app!</p>
+    <router-link class="acc" :to="{ name: 'register'}"><button class="button btn btn-light">Sign up now</button></router-link>
   </div>
 </template>
 
@@ -12,5 +13,8 @@
   margin: 0 auto;
   text-align: center;
   margin-top: 100px;
+}
+.button{
+  color:blueviolet !important;
 }
 </style>

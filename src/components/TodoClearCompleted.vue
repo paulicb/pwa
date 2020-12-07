@@ -1,6 +1,6 @@
 <template>
     <div>
-    <button v-if="showClearCompletedButton" @click="clearCompleted" class="btn btn-outline-primary">Remove Completed Tasks</button>
+    <button v-if="showClearCompletedButton" @click="clearCompleted" class="button btn btn-light">Remove Completed Tasks</button>
     </div>
 </template>
 

@@ -12,7 +12,7 @@
     <input type="password" class="form-control" id="exampleInputPassword1" v-model="password">
   </div>
   <p class="acc">Dont have an account? No problem, <router-link class="acc" :to="{ name: 'register'}">Sign up </router-link>now.</p>
-  <button type="submit" class="btn btn-primary button2">Log in</button>
+  <button type="submit" class="button btn btn-light button2">Log in</button>
 </form>
  <div class="error" v-if="error">{{error.message}}</div>
     </div>
@@ -67,5 +67,10 @@ export default {
 }
 p{
     color:white !important;
+}
+.error{
+  text-align: center;
+  font-size: 15px;
+  color:purple !important;
 }
 </style>
